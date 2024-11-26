@@ -5,7 +5,7 @@
 #include <SD.h>
 
 WebSocketsServer webSocket = WebSocketsServer(80);
-
+bool mode=0; // 0: looger, 1: server
 #define USE_SERIAL Serial
 
 void hexdump(const void *mem, uint32_t len, uint8_t cols = 16) {
@@ -103,5 +103,6 @@ void setup() {
 }
 
 void loop() {
-    webSocket.loop();
+    if(mode) webSocket.loop();
+else if(!mode) logger.loop();
 }
